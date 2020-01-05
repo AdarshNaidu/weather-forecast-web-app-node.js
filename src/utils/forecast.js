@@ -9,8 +9,9 @@ const forecast = (latitude, longitude, callback) => {
         } else if (response.body.error) {
             callback(response.body.error , undefined);
         } else {
+            console.log(response.body);
             callback(undefined, 
-            `${response.body.daily.data[0].summary} It is ${response.body.currently.temperature} degrees out. There's a ${response.body.currently.precipProbability} chance of rain`
+            `${response.body.daily.data[0].summary} It is ${Math.round((response.body.currently.temperature - 32)*5/9)}C degrees out. There's a ${response.body.currently.precipProbability}% chance of rain`
             );
         }
     })
